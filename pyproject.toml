@@ -1,0 +1,49 @@
+[project]
+name = "rppg-thermal"
+version = "0.1.0"
+description = "Estymacja częstości akcji serca metodą rPPG z nagrań RGB i termowizyjnych drona DJI Matrice 4T"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "filterpy>=1.4.5",
+    "heartpy>=1.2.7",
+    "matplotlib>=3.11.1",
+    "mediapipe>=0.10,<1.0",
+    "neurokit2>=0.2.13",
+    "numpy>=2.4.6",
+    "opencv-python>=5.0.0.93",
+    "pandas>=2.3.3",
+    "scikit-image>=0.26.0",
+    "scikit-learn>=1.9.0",
+    "scipy>=1.17.1",
+    "tqdm>=4.70.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.3.0",
+    "jupyter>=1.1.1",
+    "pytest>=8.0.0",
+    "ruff>=0.6.0",
+    "mypy>=1.11.0",
+]
+
+[tool.pytest.ini_options]
+# Testy importują z src/ jako `from src.methods import ...` — dodajemy root do ścieżki.
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = ["*.ipynb"]  # puste/eksploracyjne notebooki poza lintingiem
+
+[tool.ruff.lint]
+# Minimalny, sensowny zestaw: pyflakes (F), błędy pycodestyle (E), sortowanie importów (I),
+# modernizacja składni (UP), wychwytywanie typowych błędów (B).
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true  # mediapipe/scipy/sklearn nie dostarczają stubów typów
+files = ["src"]

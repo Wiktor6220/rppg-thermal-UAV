@@ -1,0 +1,13 @@
+# Dane, metadane uczestników i wyniki — tylko lokalnie
+data/
+metadata/
+results/
+
+# Środowisko i cache
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.DS_Store
